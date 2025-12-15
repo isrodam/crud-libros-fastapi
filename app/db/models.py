@@ -1,6 +1,6 @@
 # app/db/models.py
-from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey, Table
-from sqlalchemy.orm import relationship, DeclarativeBase
+from sqlalchemy import Column, Integer, String # <--- IMPORTACIONES CRÍTICAS
+from sqlalchemy.orm import DeclarativeBase # <--- Base de modelos ORM
 
 # Clase base de la que heredarán todos los modelos ORM
 class Base(DeclarativeBase):
@@ -10,10 +10,10 @@ class Base(DeclarativeBase):
 class Editorial(Base):
     __tablename__ = 'editoriales'
     
-    id = Column(Integer, primary_key=True, index=True)
+    # ¡Asegúrate de que las C de Column y las S de String sean MAYÚSCULAS!
+    id = Column(Integer, primary_key=True, index=True) 
     nombre = Column(String, unique=True, index=True)
     pais = Column(String)
     
-    # 🔗 Relación con Libros (Relación 1:N)
-    # Esto es una lista de objetos Libro asociados a esta editorial
-    libros = relationship("Libro", back_populates="editorial")
+    # Comenta o elimina cualquier relación que aún no esté implementada
+    # (ej. relación con Libros). Si no hay más modelos, déjalo limpio.
